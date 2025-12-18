@@ -1,16 +1,24 @@
 use anyhow::Result;
-use mass_rc::MaasClient;
+use client::MaasClient;
+use std::env;
+use mass_rc::client;
 
-fn main() -> Result<()> {
-    let maas_url = "http://localhost:5240/MAAS";
+#[tokio::main]
+async fn main() -> Result<()> {
+    // Get MAAS configuration from environment variables
+    let maas_url = env::var("MAAS_URL")
+        .unwrap_or_else(|_| "http://localhost:5240/MAAS".to_string());
 
-    let api_key = "";
+    let api_key = env::var("MAAS_API_KEY")
+        .expect("MAAS_API_KEY environment variable must be set");
 
-    let client = MaasClient::new(maas_url, api_key, "2.0")?;
+    // Create the async client
+    let client = MaasClient::new(&maas_url, &api_key, "2.0")?;
 
     println!("Connecting to MAAS at {}...", maas_url);
 
-    let machines = client.get("/machines/")?;
+    // Fetch machines
+    let machines = client.get("/machines/").await?;
 
     println!("Response: {}", serde_json::to_string_pretty(&machines)?);
 
