@@ -4,7 +4,7 @@ use mass_rc::MaasClient;
 fn main() -> Result<()> {
     let maas_url = "http://localhost:5240/MAAS";
 
-    let api_key = "0e0cyQSfgRbvw0hN3x:DQtWtevINOd54JZJQ0:xzlD2jHLNxFH8mPoJhCWvbKOAb0ljvol";
+    let api_key = "";
 
     let client = MaasClient::new(maas_url, api_key, "2.0")?;
 
