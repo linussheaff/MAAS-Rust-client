@@ -1,5 +1,5 @@
 [package]
-name = "mass-rc"
+name = "mass-rs"
 version = "0.1.0"
 edition = "2021"
 
@@ -14,6 +14,8 @@ oauth1-request = { version = "0.5", features = ["hmac-sha1"] }
 anyhow = "1.0"
 tokio = { version = "1.0", features = ["full"], optional = true }
 blocking = "1.6.2"
+thiserror="1.0"
+url = "2.5.7"
 
 [features]
 default = ["async"]

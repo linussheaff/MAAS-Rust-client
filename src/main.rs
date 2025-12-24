@@ -1,7 +1,6 @@
 use anyhow::Result;
-use client::MaasClient;
+use mass_rs::MaasClient;
 use std::env;
-use mass_rc::client;
 
 #[tokio::main]
 async fn main() -> Result<()> {
